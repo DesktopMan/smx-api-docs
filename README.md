@@ -73,6 +73,10 @@ If you watch this endpoint with no filters you will be notified every time a son
 
 # Changelog
 
+## 2025-02-05
+
+* Fixed issue with missing websocket messages
+
 ## 2025-01-21
 
 * Fixed issue when grouping by nested fields
