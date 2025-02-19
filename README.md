@@ -10,10 +10,11 @@ This project is in no way affiliated with Step Revolution, the developers of Ste
 
 The base URL for the API is _api.smx.573.no_. The following endpoints are available:
 
-* charts - chart metadata
-* players - player profiles
 * scores - individual scores
 * songs - song metadata
+* charts - chart metadata
+* players - player profiles
+* extra - Step timing data
 
 # Request format
 
@@ -71,7 +72,28 @@ The special fields listed above are not supported with websockets.
 **Note:** The _charts_ endpoint tracks play count and pass count.
 If you watch this endpoint with no filters you will be notified every time a song is played.
 
+# Extra data format
+
+The *offsets* field contains timing information for every arrow stepped by the player.
+Missed arrows are not part of the data.
+
+**Note:** Data starts at index 1. Index 0 is always 0.
+
+The *offsets* field is an array with three values for each arrow.
+
+* Time: 0 to 1000, where 0 is the beginning of the song and 1000 is the end.
+* Offset: Offset from a perfect step, in milliseconds
+* Judgement: 0 is perfect!!, 1 is perfect, 2 is early and 3 is late.
+
+Scores submitted using a QR code and scores older than the game update that added extra data will not have any data,
+and will return HTTP 404.
+
 # Changelog
+
+## 2025-02-19
+
+* Added /extra endpoint
+* Added personal bests to websocket scores
 
 ## 2025-02-05
 
