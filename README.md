@@ -46,9 +46,10 @@ You can use these special fields to modify your response in other ways than matc
 * _sort_by - sets the sort field. If you set this value to _random the API will return random results.
   Default is id.
 * _order - _asc_ or _desc_. Default is _desc_
-* _take - how many results to return (max 100, use __skip_ to get more)
-* _skip - how many results to skip
+* _take - integer (default 100). How many results to return (max 100, use __skip_ to get more)
+* _skip - integer (default 0). How many results to skip
 * _group_by - Group by a field or multiple fields. Will return the best score for each group
+* _count - _true_ or _false_ (default). Return the result count only as an object with the _count_ field set
 
 _group_by_ is the most powerful of these, so here are some examples to show what you can do:
 
@@ -89,6 +90,12 @@ Scores submitted using a QR code and scores older than the game update that adde
 and will return HTTP 404.
 
 # Changelog
+
+## 2025-04-21
+
+* Added __count_ special field
+* Added HTTP 400 response for bad requests
+* Added HTTP 500 response for internal server errors
 
 ## 2025-02-19
 
