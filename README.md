@@ -12,10 +12,8 @@ The base URL for the API is _api.smx.573.no_. The following endpoints are availa
 
 * scores - individual scores
 * songs - song metadata
-* songs/export - compact list of all songs, see below
 * charts - chart metadata
 * players - player profiles
-* players/export - compact list of all player names, see below
 * extra - Step timing data
 
 # Request format
@@ -75,32 +73,6 @@ The special fields listed above are not supported with websockets.
 **Note:** The _charts_ endpoint tracks play count and pass count.
 If you watch this endpoint with no filters you will be notified every time a song is played.
 
-# Exports
-
-The export endpoints return a compact list of all songs or players in a single response, sorted by id.
-Use them when you need the full list, for example for name matching, instead of paging through the regular endpoints.
-Special fields and field filters are not supported.
-
-Responses include an _ETag_ header, so send _If-None-Match_ to get an HTTP 304 response when nothing has changed.
-
-## Songs
-
-The _songs/export_ endpoint returns _id_, _title_, _subtitle_, _artist_, _cover_thumb_ and _is_enabled_ for every song.
-
-* All songs:  
-<https://api.smx.573.no/songs/export>
-
-## Players
-
-The _players/export_ endpoint returns _id_ and _username_ for every player.
-The only supported parameter is _active_days_, which limits the list to players with at least one score in the last N days.
-The result is cached on the server for one hour.
-
-* All players:  
-<https://api.smx.573.no/players/export>
-* Players active in the last year:  
-<https://api.smx.573.no/players/export?q={"active_days":365}>
-
 # Extra data format
 
 The *offsets* field contains timing information for every arrow stepped by the player.
@@ -118,6 +90,11 @@ Scores submitted using a QR code and scores older than the game update that adde
 and will return HTTP 404.
 
 # Changelog
+
+## 2026-11-13
+
+* Updated song, chart and player profile data on all scores
+* Going forward, scores will always return the latest song, chart and player profile data
 
 ## 2026-11-10
 
