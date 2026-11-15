@@ -131,7 +131,7 @@ The *offsets* field is an array with three values for each arrow.
 * Judgement: 0 is perfect!!, 1 is perfect, 2 is early and 3 is late.
 
 Scores submitted using a QR code and scores older than the game update that added extra data will not have any data,
-and will return HTTP 404.
+and will return HTTP 404. If the StepManiaX servers can't be reached, the API returns HTTP 502; try again later.
 
 # Changelog
 
@@ -146,6 +146,7 @@ and will return HTTP 404.
   insensitive, and booleans and the `in` operator work
 * Fixed websocket connections not being cleaned up after disconnecting
 * Fixed `_take` being used as a filter with `_export_all`
+* /extra retries once when StepManiaX drops the connection, and returns HTTP 502 instead of 404 if it still fails
 
 ## 2026-11-13
 
